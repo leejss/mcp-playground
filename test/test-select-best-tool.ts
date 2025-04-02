@@ -1,6 +1,6 @@
-import { MCPHost } from '../host';
-import { examples } from './selectBestTool-examples';
-import { config, validateConfig } from '../config';
+import { MCPHost } from '../src/host.js';
+import { examples } from './selectBestTool-examples.js';
+import { validateConfig } from '../src/config.js';
 
 // Define types for tool outputs
 type ToolResponseWithTool = {
@@ -192,13 +192,13 @@ async function testWithExamples() {
           console.log('❌ TEST FAILED: Tool usage mismatch');
         }
       } catch (error) {
-        console.error('Error:', error.message);
+        console.error('Error:', (error as Error).message);
         console.log('❌ TEST FAILED: Error during execution');
       }
       console.log('-------------------------------------------\n');
     }
   } catch (error) {
-    console.error('Configuration error:', error.message);
+    console.error('Configuration error:', (error as Error).message);
     process.exit(1);
   }
 }
@@ -211,7 +211,7 @@ async function main() {
     console.log('✅ Environment variables loaded successfully');
     await testWithExamples();
   } catch (error) {
-    console.error('⚠️  Configuration Error:', error.message);
+    console.error('⚠️  Configuration Error:', (error as Error).message);
     console.log('\nPlease set up your .env file with the required variables:');
     console.log('1. Create a .env file in the project root or copy from .env.example');
     console.log('2. Add your ANTHROPIC_API_KEY to the .env file');

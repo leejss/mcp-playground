@@ -1,11 +1,17 @@
 {
   "name": "mcp-playground",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "build/src/index.js",
+  "type": "module",
   "scripts": {
-    "dev": "tsx src/index.ts",
+    "dev": "tsx --watch src/index.ts",
+    "build": "rimraf build && tsc",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
-    "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\""
+    "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\"",
+    "start:time-server": "node build/src/servers/time-server.js",
+    "test:time-server": "node build/test/test-time-server.js",
+    "start": "npm run build && node build/src/index.js",
+    "clean": "rimraf build"
   },
   "keywords": [],
   "author": "",
@@ -13,7 +19,9 @@
   "description": "",
   "devDependencies": {
     "prettier": "^3.5.3",
-    "tsx": "^4.19.3"
+    "rimraf": "^5.0.10",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",

@@ -1,8 +1,8 @@
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { Anthropic } from '@anthropic-ai/sdk';
 import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
-import { config } from './config';
-import { safeParseJson } from './uitls';
+import { config } from './config.js';
+import { safeParseJson } from './uitls.js';
 
 export class MCPHost {
   private anthropic: Anthropic;
